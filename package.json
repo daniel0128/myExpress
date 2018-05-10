@@ -1,6 +1,10 @@
 {
   "name": "myExpress",
   "version": "0.0.1",
+  "scripts": {
+    "start": "nodemon ./example/index.js"
+  },
+  "main": "./example/index.js",
   "dependencies": {
     "merge-descriptors": "^1.0.1"
   }
