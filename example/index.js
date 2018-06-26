@@ -19,20 +19,36 @@ const app = express();
 // });
 
 // lesson 3
-app.get((req, res, next) => {
-	req.user = {
-		name: 'fool'
-	};
-	next();
+// app.get((req, res, next) => {
+// 	req.user = {
+// 		name: 'fool'
+// 	};
+// 	next();
+// });
+//
+// app.get((req, res, next) => {
+// 	req.article = {
+// 		title: 'bar'
+// 	};
+// 	next();
+// }, (req, res, next) => {
+// 	res.end(`User name is ${req.user.name}, and Article title is ${req.article.title}.`);
+// });
+
+// lesson 4
+console.log(app);
+
+app.get('/foo', function (req, res, next) {
+	console.log(app);
+	res.end('Welcome to GET /foo')
 });
 
-app.get((req, res, next) => {
-	req.article = {
-		title: 'bar'
-	};
-	next();
-}, (req, res, next) => {
-	res.end(`User name is ${req.user.name}, and Article title is ${req.article.title}.`);
+app.get('/bar', function (req, res, next) {
+	res.end('Welcome to GET /bar')
+});
+
+app.post('/foo', function (req, res, next) {
+	res.end('Welcome to POST /foo')
 });
 
 app.listen(5000);
