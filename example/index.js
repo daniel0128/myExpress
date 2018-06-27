@@ -36,19 +36,45 @@ const app = express();
 // });
 
 // lesson 4
-console.log(app);
+// // curl -X GET http://localhost:5000/foo
+// // curl -X POST http://localhost:5000/foo
+// console.log(app);
+//
+// app.get('/foo', function (req, res, next) {
+// 	console.log(app);
+// 	res.end('Welcome to GET /foo')
+// });
+//
+// app.get('/bar', function (req, res, next) {
+// 	res.end('Welcome to GET /bar')
+// });
+//
+// app.post('/foo', function (req, res, next) {
+// 	res.end('Welcome to POST /foo')
+// });
 
-app.get('/foo', function (req, res, next) {
-	console.log(app);
-	res.end('Welcome to GET /foo')
+// lesson 5
+// curl -X GET http://localhost:5000/user/1234
+// curl -X GET http://localhost:5000/article/grow-to-express
+app.get('/user/:userId', (req, res, next) => {
+	// console.log(req.params);
+	// console.log(req.user);
+	res.end(`Welcome, the user.id = ${req.params.userId} and the user.name is ${req.user.name}\n`);
 });
 
-app.get('/bar', function (req, res, next) {
-	res.end('Welcome to GET /bar')
+app.param('userId', (req, res, next, userId, key) => {
+	// console.log('here...');
+	// console.log(userId);
+	req.user = {
+		id: userId,
+		name: 'foo'
+	};
+	next();
 });
-
-app.post('/foo', function (req, res, next) {
-	res.end('Welcome to POST /foo')
+let time = 0;
+app.get('/article/:title', (req, res, next) => {
+	// console.log(`getting article ${++time}`);
+	res.end(`Welcome, the article's title is "${req.params.title}"\n`);
 });
 
 app.listen(5000);
